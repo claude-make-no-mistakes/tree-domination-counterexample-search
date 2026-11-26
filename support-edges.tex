@@ -1,0 +1,34 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.8in,vmargin=0.69in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{A support-edge reduction for tree domination unimodality}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-2.4em}
+Write $D_T(x)=\sum_k d_k(T)x^k$ for the domination polynomial of a tree $T$, in which $d_k(T)$ counts its dominating sets of size $k$. A \emph{support} is a vertex adjacent to a leaf.
+
+\begin{theorem}
+Let $T$ be a minimum-order tree with a nonunimodal domination polynomial. If deleting all edges between supports leaves at least two components, the domination polynomial of every component fails log-concavity.
+\end{theorem}
+
+\begin{proof}
+The trees on one and two vertices have polynomials $x$ and $2x+x^2$, so $T$ has at least three vertices. Every support is dominated using only its own leaf group. If the support is selected, it dominates itself. If it is omitted, all its adjacent leaves must be selected and dominate it. Removing edges between supports therefore preserves the dominating sets. The remaining components $T_1,\dots,T_r$ have product polynomial $D_T=\prod_i D_{T_i}$.
+
+Each component contains an original support. Otherwise it would consist of vertices that were neither leaves nor supports. These vertices keep their original degrees of at least two, which is impossible in a tree. Any subcollection of components can be joined into one tree by edges between the original supports. All original leaves keep their original neighbors. A two-vertex component can be reattached through its designated original support, keeping its other endpoint a leaf. The resulting dominating sets are still the unions of the independently chosen dominating sets of its components.
+
+Convolution with a finite nonnegative log-concave sequence of contiguous support preserves unimodality. For completeness, let $a$ be such a sequence and $b$ a nonnegative unimodal sequence, both extended by zeros. Set $s_i=b_i-b_{i-1}$ and write the successive differences of $a*b$ as $P_k-N_k$, where
+\[
+P_k=\sum_{i:s_i>0}s_i a_{k-i},\qquad N_k=\sum_{j:s_j<0}(-s_j)a_{k-j}.
+\]
+Each positive index $i$ of $s$ is smaller than every negative index $j$. For $k<l$, log-concavity gives $a_{l-i}a_{k-j}\le a_{k-i}a_{l-j}$. When the left product is positive, the right indices lie between the left indices and have the same sum. When the left product is zero the inequality follows from nonnegativity. Summing gives $P_lN_k\le P_kN_l$, so a strictly negative successive difference cannot precede a strictly positive one.
+
+Now suppose $D_{T_i}$ is log-concave. Its coefficient support is contiguous because supersets of a dominating set still dominate. Omit $T_i$ and rejoin the other components through their supports. The resulting tree has smaller order, so its polynomial is unimodal by minimality. The convolution property would make $D_T$ unimodal, a contradiction.
+\end{proof}
+
+The \href{https://github.com/claude-make-no-mistakes/tree-domination-counterexample-search/blob/main/paper.pdf}{separation criterion} implies that each component in the theorem must contain two vertices at distance at most two that are neither leaves nor supports. In addition, an \href{https://github.com/claude-make-no-mistakes/tree-domination-counterexample-search/blob/main/catalogue.jsonl}{exhaustive integer computation} found that every nonisomorphic tree of order at most 19 has a log-concave domination polynomial. Thus any minimum-order counterexample with an edge joining two supports has at least two components of order at least 20, and hence has order at least 40. The theorem itself does not use the computation.
+\end{document}
