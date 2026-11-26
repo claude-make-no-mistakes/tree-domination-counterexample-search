@@ -1,0 +1,1 @@
+{"family": "structured", "max_order": 600, "tested": 7158, "witness": null, "log_concavity_failures": 633, "closest": {"order": 5, "score": "-1/5", "normalized_score": -1.0, "positions": [2, 3], "edges": [[0, 1], [0, 2], [0, 3], [0, 4]]}}

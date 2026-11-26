@@ -1,0 +1,55 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.72in,vmargin=0.59in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{A log-concavity criterion for domination polynomials}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-2.5em}
+
+For a graph $G$, let $D_G(x)=\sum_k d_kx^k$, where $d_k$ counts the $k$-element vertex sets that dominate $G$. Call a vertex \emph{bare} if it is neither a leaf nor adjacent to a leaf. Domination-polynomial log-concavity fails even for some trees \cite{trees}. The following criterion gives a class for which log-concavity holds.
+
+\begin{theorem}
+Let $G$ be a finite connected simple graph on at least three vertices. If every pair of bare vertices is at distance at least three, then $D_G(x)$ is log-concave and hence unimodal.
+\end{theorem}
+
+\begin{proof}
+A support is a vertex with at least one leaf neighbor. The leaves and supports are disjoint. At a support with $t$ leaves, selecting the support allows any subset of its leaves, and omitting the support forces all of its leaves to be selected. Either choice dominates the support. The polynomial for this group is
+\[
+ f_t=x(1+x)^t+x^t=xh_t,\qquad h_t=(1+x)^t+x^{t-1}.
+\]
+The bare vertices are independent, and their neighborhoods are disjoint and consist of supports. At a bare vertex with $b$ neighbors having leaf counts $t_1,\ldots,t_b$, let $S=\sum_i t_i$. The choices at this vertex and its neighboring support groups have polynomial
+\[
+ (1+x)\prod_{i=1}^b f_{t_i}-x^S.
+\]
+The subtracted term removes the single choice in which the bare vertex and all neighboring supports are absent. Multiply these factors and one factor $f_t$ for each support outside the bare neighborhoods to obtain $D_G$.
+
+A coefficient sequence $(a_j)$ is ultra-log-concave of order $N$ if its support is contiguous and $(a_j/\binom Nj)_{j=0}^N$ is log-concave. Liggett's theorem adds the orders under convolution. Ordinary log-concavity with contiguous support is also closed under convolution \cite{liggett}.
+
+We show that $h_t$ is ultra-log-concave of order $3t$. The normalized binomial coefficients of $(1+x)^t$ have decreasing successive ratios $(t-j)/(3t-j)$. Raising the coefficient at $j=t-1$ improves the test centered there. For $t\ge3$ the only remaining affected interior test is centered at $j=t-2$. With $a_j=[x^j]h_t$, the ratio and its required bound satisfy
+\[
+ \frac{a_{t-2}^2}{a_{t-3}a_{t-1}}
+ =\frac{t-1}{t-2}\frac{3t}{2(t+1)}
+ \ \ge\ \frac{t-1}{t-2}\frac{2t+3}{2t+2}
+ =\frac{\binom{3t}{t-2}^2}{\binom{3t}{t-3}\binom{3t}{t-1}}.
+\]
+For $t=1$ there is no interior test and for $t=2$ the only interior test improves. Thus $h_t$ is ultra-log-concave and $f_t$ is log-concave.
+
+For a bare-vertex factor, write it as $x^b(P-x^d)$ with $P=(1+x)\prod_i h_{t_i}$ and $d=S-b$. The coefficients $(p_j)$ of $P$ are ultra-log-concave of order $1+3S$. Subtracting one at index $d$ can only make the test centered there harder. If $d=0$, this is an endpoint and $p_0=2^b>1$. If $d\ge1$, ultra-log-concavity gives $p_{d-1}p_{d+1}\le p_d^2d/(d+1)$. A bare vertex has $b\ge2$, so retaining the binomial terms gives
+\[
+ p_d\ge\binom{S+1}{d}\ge\binom{d+3}{d}\ge 2(d+1).
+\]
+It follows that $(p_d-1)^2-p_{d-1}p_{d+1}\ge p_d^2/(d+1)-2p_d+1\ge1$. All factors have contiguous support and are log-concave, as is their product.
+\end{proof}
+
+The one- and two-vertex trees have domination polynomials $x$ and $2x+x^2$. Thus any tree whose domination polynomial is nonunimodal contains two bare vertices at distance one or two. The repository includes finite searches and verification code for the factorization. The infinite-family theorem above follows from the proof alone.
+
+\begin{thebibliography}{9}
+\bibitem{trees} A. Du, S. Heilman and G. Panova, \emph{Trees and graphs with non log-concave dominating set sequence via AI tools}, \href{https://arxiv.org/abs/2605.02193}{arXiv:2605.02193}.
+\bibitem{liggett} T.~M. Liggett, \emph{Ultra logconcave sequences and negative dependence}, J. Combin. Theory Ser. A 79 (1997), 315--325, \href{https://doi.org/10.1006/jcta.1997.2790}{doi:10.1006/jcta.1997.2790}.
+\end{thebibliography}
+\end{document}
