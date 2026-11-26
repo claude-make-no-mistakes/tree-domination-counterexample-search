@@ -14,10 +14,13 @@ In a minimum-order counterexample, deleting all edges between supports either le
 | Rooted types sampled with exactly two bare vertices at distance one or two and order at most 350 | 5,396 | 0 | 0 |
 | Seeded mutations scored in the allowable degree band, order at most 110 | 29,365 | 0 | 0 in the band |
 | Unordered pairs of non-log-concave factors, joined order at most 450 | 28,281 | 0 | 25,698 |
+| Reduced catalogue, orders 20–27 with at most 12 nonleaf vertices | 8,942,013 | 0 | 0 |
 
 The structured run includes the family in Section 4 of Du, Heilman and Panova and varies branch lengths, multiplicities, and middle degrees. It counts parameter choices, which can produce the same tree. The two sampled runs deduplicate rooted shapes. The catalogue counts unlabeled trees. [Published family](https://arxiv.org/html/2605.02193v1#S4) · [Catalogue](catalogue.jsonl) · [Structured run](structured.jsonl) · [Leaf rewiring](mutations-96.jsonl) · [Close pairs](close-pairs.jsonl)
 
 The seeded search uses the published figures' Prüfer words and reproduces their listed coefficients. The join search uses 318 distinct non-log-concave polynomials. Its chosen representatives had no failures in the degree band where a valley could occur. [Search method](SEARCH-NOTES.md) · [Seeded run](seeded-search.jsonl) · [Join run](join-search.jsonl)
+
+The reduced catalogue uses independent supports and requires a pair of bare vertices at distance at most two. By both reductions, a minimum-order counterexample on at most 27 vertices would therefore have at least 13 nonleaf vertices. The original run was stopped during the 13-nonleaf-vertex slice when the workspace drive filled. The archived slices through 12 were complete. [Reduced catalogue](reduced-catalogue.jsonl)
 
 ## Reproduce
 
@@ -31,7 +34,7 @@ python -B search.py close-pairs --trials 6000 --max-order 350 --seed 20261126
 python -B verify.py --brute-max 13 --factor-max 18
 python -B seeded_search.py --trials 40000 --max-order 110 --seed 20261127
 python -B join_search.py --max-factor-order 350 --max-total-order 450
-python -B reduced_catalogue.py --min-order 20 --max-order 27 --max-core 13
+python -B reduced_catalogue.py --min-order 20 --max-order 27 --max-core 12
 ```
 
 The exact three-state recurrence uses the root selected, the root dominated internally, and the root still requiring its parent. Each polynomial is encoded as a nonnegative integer with base a power of 256 strictly larger than $2^n$, where $n$ is the full tree order. In this base the products and sums representing disjoint selection cases have no coefficient carries. The checker compares the entire coefficient list with direct subset enumeration for all 2,288 trees through order 13, and with the proof's factorization for all 35,663 eligible trees from orders 3 through 18. [Verification output](verification.json)
