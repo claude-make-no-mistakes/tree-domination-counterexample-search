@@ -1,0 +1,56 @@
+[
+  {
+    "distance": 1,
+    "larger_leaf_total": 1,
+    "profiles": 1,
+    "minimum_margin": 23
+  },
+  {
+    "distance": 1,
+    "larger_leaf_total": 2,
+    "profiles": 5,
+    "minimum_margin": 17
+  },
+  {
+    "distance": 1,
+    "larger_leaf_total": 3,
+    "profiles": 15,
+    "minimum_margin": 26
+  },
+  {
+    "distance": 1,
+    "larger_leaf_total": 4,
+    "profiles": 45,
+    "minimum_margin": 34
+  },
+  {
+    "distance": 1,
+    "larger_leaf_total": 5,
+    "profiles": 105,
+    "minimum_margin": 43
+  },
+  {
+    "distance": 2,
+    "larger_leaf_total": 2,
+    "profiles": 1,
+    "minimum_margin": 39
+  },
+  {
+    "distance": 2,
+    "larger_leaf_total": 3,
+    "profiles": 6,
+    "minimum_margin": 49
+  },
+  {
+    "distance": 2,
+    "larger_leaf_total": 4,
+    "profiles": 21,
+    "minimum_margin": 60
+  },
+  {
+    "distance": 2,
+    "larger_leaf_total": 5,
+    "profiles": 66,
+    "minimum_margin": 66
+  }
+]

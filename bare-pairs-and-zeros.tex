@@ -1,0 +1,335 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\DeclareMathSizes{10}{10}{7}{7}
+\DeclareMathSizes{9}{10}{7}{7}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Log-concavity for paired bare vertices\\and dense domination roots of trees}
+\author{Claude Make No Mistakes}
+\date{26 November 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Call a vertex of a tree bare if it is neither a leaf nor adjacent to
+a leaf. We prove log-concavity of the domination polynomial when
+every component of the graph of bare vertices at mutual distance at
+most two has size at most two. We also prove that domination roots of
+trees of diameter six are dense in the complex plane. The bound on
+diameter is sharp. The general tree unimodality question remains open.
+\end{abstract}
+
+For a tree \(T\), let \(D_T(x)=\sum_j d_j(T)x^j\), where \(d_j(T)\) counts
+dominating sets of size \(j\). The coefficients are positive from the
+domination number to the order of the tree. Log-concavity requires
+\(d_j^2\ge d_{j-1}d_{j+1}\) and implies unimodality on this interval.
+Some trees fail log-concavity \cite{bs,dhp}. A November 2026 manuscript
+reports strict valleys for split and bipartite graphs and leaves the
+tree case open \cite{ep}.
+
+\section{Components of at most two bare vertices}
+
+\begin{theorem}
+For a tree \(T\), form a graph on the bare vertices by joining two
+when their distance in \(T\) is one or two. If each component has
+size at most two, then \(D_T\) is log-concave.
+\end{theorem}
+
+We first give the polynomial estimates. A polynomial is
+ultra-log-concave of order \(N\) if its nonnegative coefficient
+sequence, divided by \(\binom Nj\) in degree \(j\), is log-concave
+with contiguous support. Coefficients beyond its degree are padded
+with zeros through degree \(N\). Liggett's convolution theorem adds
+the orders under multiplication \cite{liggett}.
+For positive \(t\), put \(h_t(x)=(1+x)^t+x^{t-1}\).
+Then \(h_t\) is ultra-log-concave of order \(3t\).
+For the binomial summand alone the normalized consecutive ratios
+are \((t-j)/(3t-j)\). The extra coefficient at \(t-1\)
+can only worsen the inequality centered at \(t-2\). For \(t\ge3\)
+the ratio of the middle square to the neighboring product at that
+center is \(\frac{t-1}{t-2}\frac{3t}{2(t+1)}\).
+The binomial normalization requires at least
+\(\frac{t-1}{t-2}\frac{2t+3}{2t+2}\), which follows from \(t\ge3\).
+For \(t=1,2\) the extra coefficient affects no inequality adversely.
+
+\begin{lemma}
+Let \(A=\prod_{i=1}^p h_{t_i}\) with \(p\ge1\),
+\(a=\sum_i t_i\), and \(j=a-p\). If \(r\ge1\) and \(p+r\ge3\), then
+\(x^4((1+x)^r A-x^j)\) is ultra-log-concave of order \(3a+r+4\).
+\end{lemma}
+
+\begin{proof}
+Let \(P=(1+x)^r A\) with coefficients \(p_k\), and let \(N=3a+r\).
+Convolution gives order \(N\) for \(P\). After shifting by four and
+using normalization of order \(N+4\), the allowable ratio of
+neighboring product to middle square at the original index \(j\)
+changes from
+\(\frac{j}{j+1}\frac{N-j}{N-j+1}\) to
+\(\frac{j+4}{j+5}\frac{N-j}{N-j+1}\).
+For \(j\ge1\) the original bound is the new bound times
+\[
+1-\frac{4}{(j+1)(j+4)}.
+\]
+Subtracting one at \(j\) reduces the squared coefficient by at
+most \(2p_j\). It therefore suffices that \(p_j\ge(j+1)(j+4)/2\).
+For \(j\ge2\), the binomial summands alone give
+\(p_j\ge\binom{a+r}{j}\ge\binom{j+3}{j}\), which meets the bound.
+For \(j=1\) they give at least four, and the unique \(h_2\) adds
+at least one. If \(j=0\), this is a boundary coefficient with
+\(p_0=2^p>1\). Other centers can only improve when a neighbor is
+reduced. The coefficients retain contiguous support.
+\end{proof}
+
+\paragraph{Factoring a tree.}
+A support is a neighbor of a leaf. In a tree of order at least
+three every leaf has a unique support and the two classes are disjoint.
+A support with \(t\) attached leaves contributes \(x(1+x)^t\) if
+selected and \(x^t\) if omitted. In the latter case all of its
+leaves must be chosen and dominate it. Thus its total weight is
+\(xh_t(x)\). A support can be relevant to the domination constraints
+of bare vertices in only one component of the graph in Theorem~1.
+Any edges joining supports leave their local weights intact.
+Hence \(D_T\) factors, up to a monomial, into unused support
+factors \(h_t\) and factors for the individual bare components.
+A singleton with \(p\ge2\) neighboring supports has factor
+\((1+x)A-x^j\) in the notation above. Its log-concavity follows
+from the lemma. The two smallest tree orders can be checked directly.
+
+\paragraph{A component of size two.}
+If the two bare vertices are adjacent, they share no support.
+At distance two they share exactly one, since the intervening
+vertex cannot be a third bare vertex. Each bare vertex has
+at least one private support, by its degree being at least two.
+Let \(A,B\) be the products of the private \(h_t\)'s on the two
+sides, with left leaf total \(a\) and exponents \(\alpha,\beta\)
+equal to the sums of \(t-1\) on the corresponding sides.
+Orient the pair so that the left private total is at most the
+right private total. In the distance-two case let \(\ell\) be
+the shared support's leaf count and put \(C=h_\ell\), \(\delta=\ell-1\).
+
+The normalized pair factor is \(P-E\). In the two cases take
+\[
+\begin{array}{c|l|l}
+\text{distance} & P & E\\ \hline
+1 & ((1+x)^2A-x^\alpha)B & x^\beta(A-x^\alpha)\\
+2 & (1+x)B((1+x)AC-x^{\alpha+\delta}) &
+          x^{\beta+\delta}((1+x)A-x^\alpha).
+\end{array}
+\]
+For the adjacent pair, if either bare vertex is selected, both
+domination constraints are satisfied. If neither is selected,
+each private side must select a support. For the distance-two
+pair, selecting the shared support satisfies both constraints.
+Omitting it has normalized weight \(x^\delta\) and each side
+must choose its bare vertex or a private support. These choices
+give the displayed formulas.
+
+By the lemma and convolution, \(x^4P\) is ultra-log-concave.
+Let \(b\) be the right leaf total with the shared leaves included
+if present, so \(a\le b\). Set \(j=\beta\), \(r=2\),
+\(G=B\) for distance one and \(j=\beta+\delta\), \(r=1\),
+\(G=BC\) for distance two. In both cases \(P\) dominates
+\(cE\) coefficientwise, where \(c=[x^j](1+x)^rG\).
+Indeed in distance one \(P\) dominates \((A-x^\alpha)(1+x)^2B\).
+In distance two \(P\) dominates \(((1+x)A-x^\alpha)(1+x)BC\),
+as their difference is \(x^\alpha(1+x)B(C-x^\delta)\).
+Taking degree \(j\) of the second factor in each product
+gives \(cE\).
+
+At a degree \(k\) touched by \(E\), the shifted ultra-log-concavity
+bound gives \(P_{k-1}P_{k+1}\le \frac{k+4}{k+5}P_k^2\).
+Thus \(c\ge2(k+5)\) suffices for ordinary log-concavity of \(P-E\)
+at \(k\), since \((1-1/c)^2\ge1-2/c\).
+At untouched degrees reducing neighbors can only help.
+If \(b\ge6\) and \(j\ge3\), then \(b+r-j\ge3\) and
+\[
+c\ge\binom{b+r}{j}\ge\binom{b+1}{3}\ge4b+8\ge2(k+5).
+\]
+The last step uses \(\deg E\le2b-1\), since distance two has
+at least two support factors on the right including the shared one.
+If \(j\le2\), at least \(b-2j\) leaves of \(G\) occur in \(h_1=2+x\)
+factors. Take constant terms from exactly \(b-2j\) of them and the
+binomial summands in all remaining factors. This gives
+\(c\ge2^{b-2j}\binom{2j+1}{j}\).
+This is at least \(2(b+j+6)\), checked at \(b=6\) for \(j=0,1,2\)
+and then by doubling. Since \(k\le b+j+1\), the required inequality
+follows.
+
+The remaining \(b\le5\) cases are checked by integer multiplication
+of the displayed factors, with leaf counts running over positive
+integer partitions. Table~\ref{tab:finite} records the minimum of
+\(d_k^2-d_{k-1}d_{k+1}\) over interior centers of each normalized
+factor. The replay also constructs the 265 trees and compares every
+coefficient against the rooted-state recurrence.
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Distance one} & \multicolumn{2}{c}{Distance two}\\
+\(b\) & Cases & Margin & Cases & Margin\\
+\midrule
+1&1&23&0&--\\
+2&5&17&1&39\\
+3&15&26&6&49\\
+4&45&34&21&60\\
+5&105&43&66&66\\
+\bottomrule
+\end{tabular}
+\caption{Exact checks for the finite cases of the pair factors.}
+\label{tab:finite}
+\end{table}
+
+All normalized factors have contiguous support. Ordinary log-concavity
+with contiguous support is preserved under convolution \cite{liggett},
+which completes the theorem.
+
+\section{A sharp diameter threshold for dense roots}
+
+\begin{theorem}
+The roots of domination polynomials of trees of diameter six are
+dense in the complex plane. The diameter bound is sharp.
+\end{theorem}
+
+\begin{proof}
+For a rooted tree, write \(A,B,C\) for the generating functions with
+the root selected, unselected and dominated internally, or awaiting
+domination by its parent, respectively. All other vertices are
+dominated inside the tree. Put \(M=A+B+C\). A star with \(k\ge1\)
+leaves rooted at its center has \(A=x(1+x)^k,\ B=x^k,\ C=0\).
+Write \(a(x)=1+x(1+1/x)^k\), so its \(M=x^ka(x)\).
+At a hub with \(d\) copies of the star as children,
+\[
+M=(1+x)(x^ka(x))^d,\qquad C=x^{kd},\qquad
+s=\frac C M=\frac{1}{(1+x)a(x)^d}.
+\]
+Make a tree with a new root, \(m\) of these hubs as children,
+and one additional leaf at the root. If the root is selected,
+the leaf is free. If it is omitted, the leaf is selected and
+each hub must be dominated internally. Consequently
+\[
+\frac{D_T(x)}{xM^m}=1+x+(1-s)^m .
+\]
+
+Fix a nonreal \(z\). The complex number \(q=1+1/z\) is nonreal.
+The directions of \(q^k\) for positive integers \(k\) are dense on
+the circle or form a regular polygon with at least three vertices.
+In either case choose \(k\) with \(\operatorname{Re}(zq^k)>0\).
+Then \(|a(z)|>1\) and \(a'(z)=q^{k-1}(1+(1-k)/z)\ne0\).
+For each \(d\) take \(m_d\) nearest to \(|a(z)|^d\). Along a
+subsequence \((|a(z)|/a(z))^d\to\eta\) with \(|\eta|=1\).
+At \(x=z+w/d\), Taylor expansion of a local logarithm gives
+\[
+ m_ds\ \longrightarrow\ \frac{\eta}{1+z}
+       \exp\!\left(-\frac{a'(z)}{a(z)}w\right),
+ \qquad m_ds^2\ \longrightarrow\ 0
+\]
+locally uniformly in \(w\). Hence the normalized polynomial converges
+locally uniformly to \(1+z+\exp(-c\exp(-bw))\), where
+\(c=\eta/(1+z)\) and \(b=a'(z)/a(z)\) are nonzero.
+Choose \(L\ne0\) with \(\exp L=-(1+z)\).
+Any solution of \(\exp(-bw)=-L/c\) is a simple zero of the limit.
+Rouch\'e's theorem then gives zeros of \(D_T\) with distance
+\(O_z(1/d)\) from \(z\), since the normalizing factor has no zeros in
+that neighborhood. For large \(d\), \(m_d\ge2\) and each hub
+has a vertex three edges from the outer root, so the trees have
+diameter six. Nonreal \(z\) are dense in the complex plane.
+
+For sharpness, split a tree of diameter at most five at a central
+edge if the diameter is odd, or an edge incident with the center
+if it is even. Each of the two rooted sides has height at most two.
+The one-vertex tree can be handled directly. On one side let \(P\)
+be the product of the child \(M\)'s. Its states have the form
+\(A=xP,\ M=P(x+u),\ C=Pv\), where \(u=(x/(1+x))^\ell\) and
+\(\ell\) is the number of leaf children. If \(\ell>0\), then \(v=0\).
+Otherwise \(v\) is the product of \(1/a(x)\) over the star children
+with their respective leaf counts. Empty products equal one.
+If \(\operatorname{Re}x>4\), then \(P\ne0\) and \(|u|,|v|\le1\),
+using \(|1+1/x|>1\) and \(|x|>4\).
+Joining the two sides gives \(D_1D_2+A_1C_2+C_1A_2\), where
+\(D_i=M_i-C_i\). After division by \(P_1P_2\) this equals
+\[
+x^2+x(u_1+u_2)+(u_1-v_1)(u_2-v_2).
+\]
+Its modulus is at least \(|x|^2-2|x|-4>0\).
+Thus diameter at most five leaves an open region without roots.
+\end{proof}
+
+General-graph root density was proved by Brown and Tufts \cite{bt}.
+The tree construction excludes a uniform zero-free neighborhood of
+any positive real point, a possible route to control coefficients.
+
+\section{How deep can a strict valley be?}
+
+There is an absolute constant \(C\) such that for every tree on
+\(n\ge2\) vertices and \(i\le k<j\),
+\[
+    d_k\ \ge\ n^{-C}\min(d_i,d_j).
+\]
+Eppstein and Frishberg prove that single-vertex Glauber dynamics on
+dominating sets of a tree has mixing time at most polynomial in \(n\)
+\cite[Theorem 3]{ef}. At activity one the stationary law \(\pi\) is
+uniform. For the cut at size \(k\), let \(A\) be the side with smaller
+stationary mass and \(Q=\sum_{s\in A,t\notin A}\pi(s)P(s,t)\) its
+one-step stationary flow. Here \(P(s,t)\) denotes transition
+probability. Zero mass on either side makes the coefficient claim
+immediate. Started from \(\pi\) conditioned on \(A\), the chain's law
+at each time is bounded pointwise by \(\pi/\pi(A)\). The probability
+of exiting in its first \(\tau\) steps is at most \(\tau Q/\pi(A)\).
+At mixing time for distance \(1/4\), at least \(1/4\) of the law is
+on the other side, so \(Q\ge\pi(A)/(4\tau)\).
+Reversibility makes the flow equal in both directions, and upward
+crossings start at size \(k\). Thus \(d_k/D_T(1)\ge Q\).
+Each side contains one of sizes \(i,j\), so the displayed
+inequality follows by increasing \(C\) if needed. The bound permits
+shallow valleys, while ruling out exponentially deep ones.
+
+\section{Exact searches}
+
+The free-tree catalogue through order 25 has 167,879,146 entries.
+Their domination polynomials were evaluated by integer convolution
+of rooted-state arrays. Every polynomial passed log-concavity.
+At order 26 an edge between two supports can be removed without
+affecting which sets dominate. The resulting components have order
+at most 25, so convolution certifies log-concavity in this case.
+Theorem~1 also certifies each case without a bare component of
+size at least three. The native scanner visited all 279,793,450
+trees at order 26 and directly evaluated the 26,126,173 that passed
+both filters. All of those polynomials were log-concave as well.
+An independent Python evaluator matched the native aggregate totals
+and degree-by-degree coefficient sums through order 16 with and
+without these filters.
+
+For caterpillars the support-edge removal leaves caterpillars with
+independent supports, including the possible two-vertex component.
+All 10,171,872 reduced reversal classes through order 32 were
+checked by exact spine transfer. Every polynomial was log-concave.
+This covers all caterpillars through order 32 by convolution, and
+the possibly larger caterpillars whose components after removal
+all meet that order bound. A separate repeated-branch search
+tested 11,809 rooted shapes with an order cap of 420.
+There were 1,460 failures of log-concavity and no strict valleys.
+
+\begin{thebibliography}{9}
+\bibitem{bs} I.~Beaton and S.~Schoonhoven,
+\emph{On the unimodality of nearly well-dominated trees},
+\href{https://arxiv.org/abs/2411.02288}{arXiv:2411.02288}.
+\bibitem{dhp} A.~Du, S.~Heilman, and G.~Panova,
+\emph{Trees and Graphs with Non Log-concave Dominating Set Sequence via AI Tools},
+\href{https://arxiv.org/abs/2605.02193}{arXiv:2605.02193}.
+\bibitem{ep} \emph{Domination polynomials with many peaks},
+\href{https://evidencepress.org/releases/domination-polynomial-unimodality-counterexamples/}
+{Evidence Press candidate, 24 November 2026}.
+\bibitem{liggett} T.~M.~Liggett,
+\emph{Ultra logconcave sequences and negative dependence},
+\href{https://doi.org/10.1006/jcta.1997.2790}{J. Combin. Theory Ser. A 79 (1997), 315--325}.
+\bibitem{bt} J.~I.~Brown and J.~Tufts,
+\emph{On the roots of domination polynomials},
+\href{https://doi.org/10.1007/s00373-013-1306-z}{Graphs Combin. 30 (2014), 527--547}.
+\bibitem{ef} D.~Eppstein and D.~Frishberg,
+\emph{Rapid mixing for the hardcore Glauber dynamics and other Markov
+chains in bounded-treewidth graphs},
+\href{https://doi.org/10.4230/LIPIcs.ISAAC.2023.30}{ISAAC 2023, 30:1--30:13}.
+\end{thebibliography}
+\end{document}
